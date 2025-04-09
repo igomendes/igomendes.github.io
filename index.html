@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -100,18 +100,32 @@
         <script>
             async function buscarCotacaoDolar() {
                 try {
-                    const response = await fetch('https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27' + new Date().toISOString().split('T')[0] + '%27&$top=1&$format=json');
+                    const dataHoje = new Date().toISOString().split('T')[0];
+                    const url = `https://api.bcb.gov.br/dados/serie/bcdata.sgs.10813/dados/ultimos/1?formato=json`;
+                    
+                    const response = await fetch(url);
                     const data = await response.json();
-                    if (data.value && data.value.length > 0) {
-                        const cotacao = data.value[0].cotacaoVenda.toFixed(2);
+                    
+                    if (data && data.length > 0) {
+                        const cotacao = parseFloat(data[0].valor).toFixed(2);
                         document.getElementById('dolar').textContent = `R$ ${cotacao}`;
+                    } else {
+                        throw new Error('Dados não encontrados');
                     }
                 } catch (error) {
-                    document.getElementById('dolar').textContent = 'Erro ao carregar';
+                    document.getElementById('dolar').textContent = 'Cotação indisponível';
                     console.error('Erro ao buscar cotação:', error);
+                    
+                    // Tentar novamente após 5 segundos
+                    setTimeout(buscarCotacaoDolar, 5000);
                 }
             }
+
+            // Buscar cotação inicial
             buscarCotacaoDolar();
+
+            // Atualizar a cada 30 segundos
+            setInterval(buscarCotacaoDolar, 30000);
         </script>
     </header>
 
