@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rodrigo Mendes - Gestor de Equipes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        header {
+            background: #000000;
+            color: white;
+            padding: 1rem;
+        }
+
+        nav {
+            background: #ff0000;
+            padding: 1rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #000000;
+            transition: 0.3s;
+        }
+
+        footer {
+            background: #000000;
+            color: white;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .newsletter {
+            margin: 1rem 0;
+        }
+
+        .newsletter input {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .newsletter button {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .newsletter button:hover {
+            background: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="cotacao">
+            Cotação do Dólar: <span id="dolar">R$ 5,00</span>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> Início</a></li>
+            <li><a href="#sobre"><i class="fas fa-info-circle"></i> Quem Somos</a></li>
+            <li><a href="#servicos"><i class="fas fa-cogs"></i> Nossos Serviços</a></li>
+            <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="#contato"><i class="fas fa-envelope"></i> Fale Conosco</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Conteúdo principal aqui -->
+    </main>
+
+    <footer>
+        <div class="links">
+            <h3>Links Úteis</h3>
+            <ul>
+                <li><a href="#link1">Link 1</a></li>
+                <li><a href="#link2">Link 2</a></li>
+                <li><a href="#link3">Link 3</a></li>
+            </ul>
+        </div>
+
+        <div class="mapa">
+            <h3>Nossa Localização</h3>
+            <iframe src="https://www.google.com/maps/embed" width="300" height="200"></iframe>
+        </div>
+
+        <div class="newsletter">
+            <h3>Newsletter</h3>
+            <form>
+                <input type="email" placeholder="Seu e-mail">
+                <button type="submit">Inscrever</button>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        // Aqui você pode adicionar código para buscar a cotação do dólar em tempo real
+    </script>
+</body>
+</html>
