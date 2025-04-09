@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -95,8 +95,24 @@
     <header>
         <h1 style="text-align: center; color: #ff0000; margin-bottom: 1rem;">Rodrigo Mendes</h1>
         <div class="cotacao">
-            Cotação do Dólar: <span id="dolar">R$ 5,00</span>
+            Cotação do Dólar: <span id="dolar">Carregando...</span>
         </div>
+        <script>
+            async function buscarCotacaoDolar() {
+                try {
+                    const response = await fetch('https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27' + new Date().toISOString().split('T')[0] + '%27&$top=1&$format=json');
+                    const data = await response.json();
+                    if (data.value && data.value.length > 0) {
+                        const cotacao = data.value[0].cotacaoVenda.toFixed(2);
+                        document.getElementById('dolar').textContent = `R$ ${cotacao}`;
+                    }
+                } catch (error) {
+                    document.getElementById('dolar').textContent = 'Erro ao carregar';
+                    console.error('Erro ao buscar cotação:', error);
+                }
+            }
+            buscarCotacaoDolar();
+        </script>
     </header>
 
     <nav>
